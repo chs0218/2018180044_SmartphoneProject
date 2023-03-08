@@ -47,9 +47,3 @@ gradlew.bat
 /nbactions.xml
 /nb-configuration.xml
 /*.class
-
-# Visual Studio Code
-.vscode/
-.classpath
-.project
-/.history/
