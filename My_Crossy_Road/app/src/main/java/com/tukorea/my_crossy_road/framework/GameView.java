@@ -56,6 +56,10 @@ public class GameView extends View implements Choreographer.FrameCallback {
         if(previousNanos != 0){
             long elapsedNanos = nanos - previousNanos;
             BaseScene.getTopScene().update(elapsedNanos);
+            BaseScene scene = BaseScene.getTopScene();
+            if (scene != null) {
+                scene.update(elapsedNanos);
+            }
         }
         previousNanos = nanos;
         invalidate();
@@ -99,7 +103,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
         if (BuildConfig.DEBUG && BaseScene.frameTime > 0) {
             int fps = (int) (1.0f / BaseScene.frameTime);
-            canvas.drawText("FPS: " + fps, 100f, 200f, fpsPaint);
+            canvas.drawText(BaseScene.getTopScene().SceneName + " FPS: " + fps, 100f, 200f, fpsPaint);
         }
     }
 
