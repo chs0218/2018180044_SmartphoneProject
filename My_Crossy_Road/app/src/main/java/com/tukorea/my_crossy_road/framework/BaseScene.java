@@ -7,7 +7,7 @@ import android.view.MotionEvent;
 import java.util.ArrayList;
 
 public class BaseScene {
-    public String SceneName = new String("");
+    public String SceneName;
     private static ArrayList<BaseScene> stack = new ArrayList<>();
     public static float frameTime;
     protected static Handler handler = new Handler();
@@ -18,6 +18,15 @@ public class BaseScene {
     }
     public int pushScene() {
         stack.add(this);
+        return stack.size();
+    }
+
+    public int pushScene(BaseScene baseScene) {
+        stack.add(baseScene);
+        return stack.size();
+    }
+    public int popScene() {
+        stack.remove(stack.size() - 1);
         return stack.size();
     }
 
