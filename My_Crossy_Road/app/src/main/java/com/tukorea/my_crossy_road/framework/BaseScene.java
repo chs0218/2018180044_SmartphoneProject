@@ -7,7 +7,6 @@ import android.view.MotionEvent;
 import java.util.ArrayList;
 
 public class BaseScene {
-    public String SceneName;
     private static ArrayList<BaseScene> stack = new ArrayList<>();
     public static float frameTime;
     protected static Handler handler = new Handler();

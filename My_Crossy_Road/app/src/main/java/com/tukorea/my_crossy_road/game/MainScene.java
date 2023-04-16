@@ -2,11 +2,15 @@ package com.tukorea.my_crossy_road.game;
 
 import android.view.MotionEvent;
 
+import com.tukorea.my_crossy_road.R;
 import com.tukorea.my_crossy_road.framework.BaseScene;
+import com.tukorea.my_crossy_road.framework.Sprite;
 
 public class MainScene extends BaseScene {
+    private Sprite backgroundSprite;
     public MainScene(){
-        SceneName = new String("MainScene");
+        backgroundSprite = new Sprite(R.mipmap.background, 4.5f, 8.0f, 9.0f, 16.0f);
+        add(backgroundSprite);
     }
 
     @Override
