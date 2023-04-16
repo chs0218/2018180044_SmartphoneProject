@@ -10,7 +10,7 @@ import android.view.Choreographer;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.example.skeleton.BuildConfig;
+import com.tukorea.my_crossy_road.BuildConfig;
 
 public class GameView extends View implements Choreographer.FrameCallback {
     private static final String TAG = GameView.class.getSimpleName();
