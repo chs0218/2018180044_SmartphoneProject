@@ -36,6 +36,41 @@ public class MainScene extends BaseScene {
         add(Layer.environment, new Sprite(R.mipmap.road, 7.0f, 13.0f, 2.0f, 2.0f));
         add(Layer.environment, new Sprite(R.mipmap.road, 9.0f, 13.0f, 2.0f, 2.0f));
 
+        add(Layer.environment, new Sprite(R.mipmap.road, 1.0f, 11.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.road, 3.0f, 11.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.road, 5.0f, 11.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.road, 7.0f, 11.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.road, 9.0f, 11.0f, 2.0f, 2.0f));
+
+        add(Layer.environment, new Sprite(R.mipmap.road, 1.0f, 9.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.road, 3.0f, 9.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.road, 5.0f, 9.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.road, 7.0f, 9.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.road, 9.0f, 9.0f, 2.0f, 2.0f));
+
+        add(Layer.environment, new Sprite(R.mipmap.grass, 1.0f, 7.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.grass, 3.0f, 7.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.grass, 5.0f, 7.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.grass, 7.0f, 7.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.grass, 9.0f, 7.0f, 2.0f, 2.0f));
+
+        add(Layer.environment, new Sprite(R.mipmap.road, 1.0f, 5.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.road, 3.0f, 5.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.road, 5.0f, 5.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.road, 7.0f, 5.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.road, 9.0f, 5.0f, 2.0f, 2.0f));
+
+        add(Layer.environment, new Sprite(R.mipmap.grass, 1.0f, 3.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.grass, 3.0f, 3.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.grass, 5.0f, 3.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.grass, 7.0f, 3.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.grass, 9.0f, 3.0f, 2.0f, 2.0f));
+
+        add(Layer.environment, new Sprite(R.mipmap.grass, 1.0f, 1.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.grass, 3.0f, 1.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.grass, 5.0f, 1.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.grass, 7.0f, 1.0f, 2.0f, 2.0f));
+        add(Layer.environment, new Sprite(R.mipmap.grass, 9.0f, 1.0f, 2.0f, 2.0f));
         player = new Player();
         add(Layer.player, player);
     }
