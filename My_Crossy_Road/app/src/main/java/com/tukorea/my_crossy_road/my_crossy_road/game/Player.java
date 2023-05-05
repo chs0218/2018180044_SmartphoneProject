@@ -5,13 +5,17 @@ import android.graphics.Rect;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import androidx.constraintlayout.widget.ConstraintSet;
+
 import com.tukorea.my_crossy_road.R;
 import com.tukorea.my_crossy_road.framework.objects.AnimSprite;
 import com.tukorea.my_crossy_road.framework.scene.BaseScene;
+import com.tukorea.my_crossy_road.framework.view.Metrics;
 
 public class Player extends AnimSprite {
 
     private static final String TAG = Player.class.getSimpleName();
+    private float touchDownX, touchDownY;
     private float previousY;
     private float totalDy;
 
@@ -90,9 +94,11 @@ public class Player extends AnimSprite {
 
     public boolean onTouchEvent(MotionEvent event)
     {
-        if(event.getAction() == MotionEvent.ACTION_DOWN)
+        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+            touchDownX = Metrics.toGameX(event.getX());
+            touchDownY = Metrics.toGameY(event.getY());
             return true;
-
+        }
         if (event.getAction() == MotionEvent.ACTION_UP) {
             state = State.Move_Forward;
             previousY = y;
