@@ -1,4 +1,4 @@
-package com.tukorea.my_crossy_road.my_crossy_road.game;
+package com.tukorea.my_crossy_road.framework.view.my_crossy_road.game;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
