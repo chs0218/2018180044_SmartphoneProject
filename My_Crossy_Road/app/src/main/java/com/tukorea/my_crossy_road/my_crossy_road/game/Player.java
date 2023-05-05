@@ -124,6 +124,21 @@ public class Player extends AnimSprite {
                 }
                 break;
         }
+
+//        float dy = 1.f * BaseScene.frameTime;
+//
+//        if(y < 15.0f)
+//        {
+//            y += dy;
+//            dstRect.offset(0, dy);
+//        }
+//
+//        else
+//        {
+//            dy = 15.0f - y;
+//            y += dy;
+//            dstRect.offset(0, dy);
+//        }
     }
 
     public boolean onTouchEvent(MotionEvent event)
