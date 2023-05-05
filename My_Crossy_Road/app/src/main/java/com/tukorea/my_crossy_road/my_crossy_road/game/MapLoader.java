@@ -16,27 +16,28 @@ public class MapLoader implements IGameObject {
 
     MapLoader()
     {
-        environMentY = -1.0f;
+        environMentY = 17.0f;
     }
 
     @Override
     public void update() {
         MainScene scene = (MainScene) BaseScene.getTopScene();
 
-        while(environMentY <= 17.0f)
+        while(-3.0f < environMentY)
         {
             int seed = random.nextInt(2);
-            for(int i = 0; i < 5; ++i) {
-                if (seed == 0) {
-                    scene.add(MainScene.Layer.environment, new Sprite(R.mipmap.grass, 1.0f + 2.0f * i, environMentY, 2.0f, 2.0f));
-                }
-                else {
-                    scene.add(MainScene.Layer.environment, new Sprite(R.mipmap.road, 1.0f + 2.0f * i, environMentY, 2.0f, 2.0f));
-                }
+
+            if (seed == 0) {
+                scene.add(MainScene.Layer.environment, new GrassEnvironment(environMentY));
+            }
+            else {
+                scene.add(MainScene.Layer.environment, new RoadEnvironment(environMentY));
             }
 
-            environMentY += 2.0f;
+            environMentY -= 2.0f;
         }
+
+        environMentY += 0.25f * BaseScene.frameTime;
     }
 
     @Override

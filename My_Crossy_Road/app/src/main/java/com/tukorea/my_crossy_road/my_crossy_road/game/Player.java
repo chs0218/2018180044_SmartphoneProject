@@ -83,9 +83,6 @@ public class Player extends AnimSprite {
                 }
 
                 else {
-                    dy = (previousY - 2.0f) - y;
-                    y += dy;
-                    dstRect.offset(0, dy);
                     state = State.Idle;
                 }
                 break;
@@ -99,9 +96,6 @@ public class Player extends AnimSprite {
                         x += dx;
                         dstRect.offset(dx, 0);
                     } else {
-                        dx = (previousX + 2.0f) - x;
-                        y += dx;
-                        dstRect.offset(dx, 0);
                         state = State.Idle;
                     }
                 }
@@ -116,29 +110,16 @@ public class Player extends AnimSprite {
                         x += dx;
                         dstRect.offset(dx, 0);
                     } else {
-                        dx = (previousX - 2.0f) - x;
-                        y += dx;
-                        dstRect.offset(dx, 0);
                         state = State.Idle;
                     }
                 }
                 break;
         }
 
-//        float dy = 1.f * BaseScene.frameTime;
-//
-//        if(y < 15.0f)
-//        {
-//            y += dy;
-//            dstRect.offset(0, dy);
-//        }
-//
-//        else
-//        {
-//            dy = 15.0f - y;
-//            y += dy;
-//            dstRect.offset(0, dy);
-//        }
+        float dy = 0.25f * BaseScene.frameTime;
+
+        y += dy;
+        dstRect.offset(0, dy);
     }
 
     public boolean onTouchEvent(MotionEvent event)
