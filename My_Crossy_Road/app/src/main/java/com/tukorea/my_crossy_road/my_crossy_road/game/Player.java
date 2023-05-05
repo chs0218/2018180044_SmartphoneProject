@@ -20,7 +20,7 @@ public class Player extends AnimSprite {
     private float totalDx, totalDy;
 
     public Player() {
-        super(R.mipmap.character_animation_sheet, 5.0f, 15.0f, 2.0f, 2.0f, 8, 1);
+        super(R.mipmap.character_animation_sheet, 5.0f, 15.0f, 1.0f, 1.0f, 8, 1);
     }
 
     protected static Rect[][] srcRects = {
