@@ -8,15 +8,15 @@ import com.tukorea.my_crossy_road.framework.objects.AnimSprite;
 
 public class Player extends AnimSprite {
     public Player() {
-        super(R.mipmap.backward, 2.0f, 3.0f, 2.0f, 2.0f, 8, 1);
+        super(R.mipmap.character_animation_sheet, 2.0f, 3.0f, 2.0f, 2.0f, 8, 1);
     }
 
     protected static Rect[][] srcRects = {
             new Rect[] {
-                    new Rect(0 * 900, 0, 1 * 900, 900),
-                    new Rect(1 * 900, 0, 2 * 900, 900),
-                    new Rect(2 * 900, 0, 3 * 900, 900),
-                    new Rect(3 * 900, 0, 4 * 900, 900)
+                    new Rect(0 * 900, 0 * 900, 1 * 900, 1 * 900),
+                    new Rect(1 * 900, 0 * 900, 2 * 900, 1 * 900),
+                    new Rect(2 * 900, 0 * 900, 3 * 900, 1 * 900),
+                    new Rect(3 * 900, 0 * 900, 4 * 900, 1 * 900)
             }
     };
     protected enum State {
