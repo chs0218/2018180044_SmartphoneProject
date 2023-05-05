@@ -1,4 +1,4 @@
-package com.tukorea.my_crossy_road.framework.view.my_crossy_road.app;
+package com.tukorea.my_crossy_road.my_crossy_road.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
