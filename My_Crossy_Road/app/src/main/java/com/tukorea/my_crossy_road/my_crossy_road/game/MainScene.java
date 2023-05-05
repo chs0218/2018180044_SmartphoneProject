@@ -27,8 +27,6 @@ public class MainScene extends BaseScene {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        player.onTouchEvent(event);
-
-        return super.onTouchEvent(event);
+        return player.onTouchEvent(event);
     }
 }

@@ -11,7 +11,6 @@ import com.tukorea.my_crossy_road.BuildConfig;
 import com.tukorea.my_crossy_road.framework.interfaces.IBoxCollidable;
 import com.tukorea.my_crossy_road.framework.interfaces.IGameObject;
 import com.tukorea.my_crossy_road.framework.interfaces.IRecyclable;
-import com.tukorea.my_crossy_road.framework.interfaces.ITouchable;
 
 import java.util.ArrayList;
 
@@ -133,16 +132,6 @@ public class BaseScene {
         return layers.get(layerEnum.ordinal());
     }
     public boolean onTouchEvent(MotionEvent event) {
-        int touchLayer = getTouchLayerIndex();
-        if (touchLayer < 0) return false;
-        ArrayList<IGameObject> gameObjects = layers.get(touchLayer);
-        for (IGameObject gobj : gameObjects) {
-            if (!(gobj instanceof ITouchable)) {
-                continue;
-            }
-            boolean processed = ((ITouchable) gobj).onTouchEvent(event);
-            if (processed) return true;
-        }
         return false;
     }
 

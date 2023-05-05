@@ -86,15 +86,21 @@ public class Player extends AnimSprite {
                 }
                 break;
         }
-        Log.d(TAG, "x = " + x + " y = " + y);
     }
 
-    public void onTouchEvent(MotionEvent event)
+    public boolean onTouchEvent(MotionEvent event)
     {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN)
+            return true;
+
+        if (event.getAction() == MotionEvent.ACTION_UP) {
             state = State.Move_Forward;
             previousY = y;
             totalDy = 0;
+
+            return true;
         }
+
+        return false;
     }
 }
