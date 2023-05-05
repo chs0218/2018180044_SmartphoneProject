@@ -15,9 +15,9 @@ import com.tukorea.my_crossy_road.framework.view.Metrics;
 public class Player extends AnimSprite {
 
     private static final String TAG = Player.class.getSimpleName();
-    private float touchDownX, touchDownY;
-    private float previousY;
-    private float totalDy;
+    private float touchDownX;
+    private float previousX, previousY;
+    private float totalDx, totalDy;
 
     public Player() {
         super(R.mipmap.character_animation_sheet, 5.0f, 15.0f, 2.0f, 2.0f, 8, 1);
@@ -89,6 +89,40 @@ public class Player extends AnimSprite {
                     state = State.Idle;
                 }
                 break;
+            case Move_Right:
+                {
+                    float dx = 4.f * BaseScene.frameTime;
+
+                    totalDx += dx;
+
+                    if (totalDx < 2.0f) {
+                        x += dx;
+                        dstRect.offset(dx, 0);
+                    } else {
+                        dx = (previousX + 2.0f) - x;
+                        y += dx;
+                        dstRect.offset(dx, 0);
+                        state = State.Idle;
+                    }
+                }
+                break;
+            case Move_Left:
+                {
+                    float dx = -4.f * BaseScene.frameTime;
+
+                    totalDx += dx;
+
+                    if (totalDx > -2.0f) {
+                        x += dx;
+                        dstRect.offset(dx, 0);
+                    } else {
+                        dx = (previousX - 2.0f) - x;
+                        y += dx;
+                        dstRect.offset(dx, 0);
+                        state = State.Idle;
+                    }
+                }
+                break;
         }
     }
 
@@ -96,14 +130,31 @@ public class Player extends AnimSprite {
     {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
             touchDownX = Metrics.toGameX(event.getX());
-            touchDownY = Metrics.toGameY(event.getY());
             return true;
         }
         if (event.getAction() == MotionEvent.ACTION_UP) {
-            state = State.Move_Forward;
-            previousY = y;
-            totalDy = 0;
+            float touchUpX = Metrics.toGameX(event.getX());
 
+            if(Math.abs(touchUpX - touchDownX) < 0.1f && state == State.Idle)
+            {
+                state = State.Move_Forward;
+                previousY = y;
+                totalDy = 0;
+            }
+            else if (state == State.Idle) {
+                if(touchUpX - touchDownX < 0.f)
+                {
+                    state = State.Move_Left;
+                    previousX = x;
+                    totalDx = 0;
+                }
+                else
+                {
+                    state = State.Move_Right;
+                    previousX = x;
+                    totalDx = 0;
+                }
+            }
             return true;
         }
 
