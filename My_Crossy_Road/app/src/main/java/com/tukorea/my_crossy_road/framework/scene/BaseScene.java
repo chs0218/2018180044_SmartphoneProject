@@ -1,8 +1,10 @@
-package com.tukorea.my_crossy_road.framework;
+package com.tukorea.my_crossy_road.framework.scene;
 
 import android.graphics.Canvas;
 import android.os.Handler;
 import android.view.MotionEvent;
+
+import com.tukorea.my_crossy_road.framework.interfaces.IGameObject;
 
 import java.util.ArrayList;
 

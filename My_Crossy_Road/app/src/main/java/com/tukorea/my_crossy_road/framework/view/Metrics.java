@@ -1,4 +1,4 @@
-package com.tukorea.my_crossy_road.framework;
+package com.tukorea.my_crossy_road.framework.view;
 
 public class Metrics {
     public static float scale = 1.0f;

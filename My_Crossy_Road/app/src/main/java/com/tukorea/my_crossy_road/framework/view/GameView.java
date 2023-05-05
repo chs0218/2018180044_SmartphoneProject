@@ -1,4 +1,4 @@
-package com.tukorea.my_crossy_road.framework;
+package com.tukorea.my_crossy_road.framework.view;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.tukorea.my_crossy_road.BuildConfig;
+import com.tukorea.my_crossy_road.framework.scene.BaseScene;
 
 public class GameView extends View implements Choreographer.FrameCallback {
     private static final String TAG = GameView.class.getSimpleName();

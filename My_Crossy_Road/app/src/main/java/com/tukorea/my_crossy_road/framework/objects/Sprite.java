@@ -1,8 +1,11 @@
-package com.tukorea.my_crossy_road.framework;
+package com.tukorea.my_crossy_road.framework.objects;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.RectF;
+
+import com.tukorea.my_crossy_road.framework.res.BitmapPool;
+import com.tukorea.my_crossy_road.framework.interfaces.IGameObject;
 
 public class Sprite implements IGameObject {
     protected Bitmap bitmap;

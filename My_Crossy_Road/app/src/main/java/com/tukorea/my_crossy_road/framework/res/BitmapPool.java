@@ -1,8 +1,10 @@
-package com.tukorea.my_crossy_road.framework;
+package com.tukorea.my_crossy_road.framework.res;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
+import com.tukorea.my_crossy_road.framework.view.GameView;
 
 import java.util.HashMap;
 

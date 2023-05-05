@@ -1,4 +1,4 @@
-package com.tukorea.my_crossy_road.framework;
+package com.tukorea.my_crossy_road.framework.interfaces;
 
 import android.graphics.Canvas;
 
