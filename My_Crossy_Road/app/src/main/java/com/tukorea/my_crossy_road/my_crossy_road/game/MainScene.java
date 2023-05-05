@@ -16,10 +16,10 @@ public class MainScene extends BaseScene {
     private final Player player;
 
     public MainScene(){
-        Metrics.setGameSize(9.0f, 16.0f);
+        Metrics.setGameSize(10.0f, 16.0f);
         initLayers(Layer.COUNT);
 
-        add(Layer.bg, new Sprite(R.mipmap.background, 4.5f, 8.0f, 9.0f, 16.0f));
+        add(Layer.bg, new Sprite(R.mipmap.background, 5.0f, 8.0f, 10.0f, 16.0f));
 
         player = new Player();
         add(Layer.player, player);
@@ -27,6 +27,8 @@ public class MainScene extends BaseScene {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        player.onTouchEvent(event);
+
         return super.onTouchEvent(event);
     }
 }
