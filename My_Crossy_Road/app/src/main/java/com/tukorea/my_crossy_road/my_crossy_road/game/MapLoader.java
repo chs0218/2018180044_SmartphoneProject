@@ -23,15 +23,14 @@ public class MapLoader implements IGameObject {
     public void update() {
         MainScene scene = (MainScene) BaseScene.getTopScene();
 
-        while(-3.0f < environMentY)
+        while(-5.0f < environMentY)
         {
-            int seed = random.nextInt(2);
+            Environment.Type randomType = Environment.Type.random(random);
 
-            if (seed == 0) {
-                scene.add(MainScene.Layer.environment, new Environment(R.mipmap.grass, environMentY));
-            }
-            else {
-                scene.add(MainScene.Layer.environment, new Environment(R.mipmap.road, environMentY));
+            for(int i = 0; i < 5; ++i)
+            {
+                Environment environment = Environment.get(randomType, 1.0f * 2.0f * i, 1.0f  + environMentY);
+                scene.add(MainScene.Layer.environment, environment);
             }
 
             environMentY -= 2.0f;
