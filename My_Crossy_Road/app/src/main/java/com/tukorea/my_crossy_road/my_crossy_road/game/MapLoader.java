@@ -28,10 +28,10 @@ public class MapLoader implements IGameObject {
             int seed = random.nextInt(2);
 
             if (seed == 0) {
-                scene.add(MainScene.Layer.environment, new GrassEnvironment(environMentY));
+                scene.add(MainScene.Layer.environment, new Environment(R.mipmap.grass, environMentY));
             }
             else {
-                scene.add(MainScene.Layer.environment, new RoadEnvironment(environMentY));
+                scene.add(MainScene.Layer.environment, new Environment(R.mipmap.road, environMentY));
             }
 
             environMentY -= 2.0f;

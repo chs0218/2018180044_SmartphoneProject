@@ -4,18 +4,18 @@ import android.graphics.Canvas;
 
 import com.tukorea.my_crossy_road.R;
 import com.tukorea.my_crossy_road.framework.interfaces.IGameObject;
-import com.tukorea.my_crossy_road.framework.objects.Sprite;
-import com.tukorea.my_crossy_road.framework.scene.BaseScene;
+import com.tukorea.my_crossy_road.framework.interfaces.IRecyclable;
 
-public class RoadEnvironment implements IGameObject {
+public class Environment implements IGameObject, IRecyclable {
     private TerrainSprite[] sprites = new TerrainSprite[5];
 
-    public RoadEnvironment(float environmentY)
+    public Environment(int resource, float environmentY)
     {
         for(int i = 0; i < 5; ++i) {
-            sprites[i] = new TerrainSprite(R.mipmap.road, 1.0f + 2.0f * i, environmentY, 2.0f, 2.0f);
+            sprites[i] = new TerrainSprite(resource, 1.0f + 2.0f * i, environmentY, 2.0f, 2.0f);
         }
     }
+
     @Override
     public void update() {
         for(int i = 0; i < 5; ++i) {
@@ -28,5 +28,9 @@ public class RoadEnvironment implements IGameObject {
         for(int i = 0; i < 5; ++i) {
             sprites[i].draw(canvas);
         }
+    }
+
+    @Override
+    public void onRecycle() {
     }
 }
