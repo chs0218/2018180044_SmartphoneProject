@@ -19,6 +19,7 @@ public class MainScene extends BaseScene {
     }
 
     private final Player player;
+    private final MapLoader mapLoader;
 
     public MainScene(){
         Metrics.setGameSize(10.0f, 16.0f);
@@ -26,7 +27,8 @@ public class MainScene extends BaseScene {
 
         add(Layer.bg, new Sprite(R.mipmap.background, 5.0f, 8.0f, 10.0f, 16.0f));
 
-        add(Layer.controller, new MapLoader());
+        mapLoader = new MapLoader();
+        add(Layer.controller, mapLoader);
 
         player = new Player();
         add(Layer.player, player);
@@ -47,12 +49,7 @@ public class MainScene extends BaseScene {
             }
         }
 
-        ArrayList<IGameObject> controllerArray = getObjectsAt(Layer.controller);
-        for (IGameObject gobj : controllerArray) {
-            if (gobj instanceof MapLoader) {
-                ((MapLoader) gobj).PullDownMapLoader(speed);
-            }
-        }
+        mapLoader.PullDownMapLoader(speed);
     }
 
     @Override
