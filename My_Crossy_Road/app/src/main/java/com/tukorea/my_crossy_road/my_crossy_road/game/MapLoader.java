@@ -35,8 +35,11 @@ public class MapLoader implements IGameObject {
 
             environMentY -= 2.0f;
         }
+    }
 
-        environMentY += 0.25f * BaseScene.frameTime;
+    public void PullDownMapLoader(float speed)
+    {
+        environMentY += speed * BaseScene.frameTime;
     }
 
     @Override

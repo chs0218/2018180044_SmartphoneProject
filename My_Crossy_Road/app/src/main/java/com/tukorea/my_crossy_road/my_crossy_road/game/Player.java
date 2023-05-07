@@ -116,7 +116,18 @@ public class Player extends AnimSprite {
                 break;
         }
 
-        float dy = 0.25f * BaseScene.frameTime;
+
+    }
+
+
+    float GetY()
+    {
+        return y;
+    }
+
+    public void PullDownCharacter(float speed)
+    {
+        float dy = speed * BaseScene.frameTime;
 
         y += dy;
         dstRect.offset(0, dy);

@@ -1,12 +1,17 @@
 //package com.tukorea.my_crossy_road.framework.view.my_crossy_road.game;
 package com.tukorea.my_crossy_road.my_crossy_road.game;
 
+import android.graphics.RectF;
 import android.view.MotionEvent;
 
 import com.tukorea.my_crossy_road.R;
+import com.tukorea.my_crossy_road.framework.interfaces.IBoxCollidable;
+import com.tukorea.my_crossy_road.framework.interfaces.IGameObject;
 import com.tukorea.my_crossy_road.framework.scene.BaseScene;
 import com.tukorea.my_crossy_road.framework.objects.Sprite;
 import com.tukorea.my_crossy_road.framework.view.Metrics;
+
+import java.util.ArrayList;
 
 public class MainScene extends BaseScene {
     public enum Layer {
@@ -25,6 +30,35 @@ public class MainScene extends BaseScene {
 
         player = new Player();
         add(Layer.player, player);
+    }
+
+    public void PullDown()
+    {
+        float speed = (16.0f - player.GetY()) / 16.0f * 4.0f;
+        player.PullDownCharacter(speed);
+        PullDownEnvironments(speed);
+    }
+
+    public void PullDownEnvironments(float speed) {
+        ArrayList<IGameObject> environmentArray = getObjectsAt(Layer.environment);
+        for (IGameObject gobj : environmentArray) {
+            if (gobj instanceof Environment) {
+                ((Environment) gobj).PullDownEnvironment(speed);
+            }
+        }
+
+        ArrayList<IGameObject> controllerArray = getObjectsAt(Layer.controller);
+        for (IGameObject gobj : controllerArray) {
+            if (gobj instanceof MapLoader) {
+                ((MapLoader) gobj).PullDownMapLoader(speed);
+            }
+        }
+    }
+
+    @Override
+    public void update(long elapsedNanos) {
+        PullDown();
+        super.update(elapsedNanos);
     }
 
     @Override

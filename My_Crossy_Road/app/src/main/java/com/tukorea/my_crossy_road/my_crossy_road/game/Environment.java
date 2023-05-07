@@ -12,7 +12,6 @@ import java.util.Random;
 
 public class Environment extends Sprite implements IRecyclable {
     private static final String TAG = Environment.class.getSimpleName();
-    public static final float SPEED = 0.25f;
 
     private Type type;
 
@@ -66,15 +65,18 @@ public class Environment extends Sprite implements IRecyclable {
 
     @Override
     public void update() {
-        float dy = SPEED * BaseScene.frameTime;
-
-        y += dy;
-        dstRect.offset(0, dy);
-
         if (dstRect.top > 18.0f) {
 //            Log.d(TAG, "Removing:" + this);
             BaseScene.getTopScene().remove(getLayer(), this);
         }
+    }
+
+    public void PullDownEnvironment(float speed)
+    {
+        float dy = speed * BaseScene.frameTime;
+
+        y += dy;
+        dstRect.offset(0, dy);
     }
 
     protected MainScene.Layer getLayer() {
