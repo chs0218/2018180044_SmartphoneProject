@@ -48,7 +48,12 @@ public class MainScene extends BaseScene {
                 ((Environment) gobj).PullDownEnvironment(speed);
             }
         }
-
+        ArrayList<IGameObject> obstacleArray = getObjectsAt(Layer.obstacle);
+        for (IGameObject gobj : obstacleArray) {
+            if (gobj instanceof Obstacle) {
+                ((Obstacle) gobj).PullDownObstacle(speed);
+            }
+        }
         mapLoader.PullDownMapLoader(speed);
     }
 

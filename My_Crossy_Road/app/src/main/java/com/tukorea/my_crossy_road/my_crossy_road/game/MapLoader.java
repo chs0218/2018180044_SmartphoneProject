@@ -1,6 +1,7 @@
 package com.tukorea.my_crossy_road.my_crossy_road.game;
 
 import android.graphics.Canvas;
+import android.util.Log;
 
 import com.tukorea.my_crossy_road.R;
 import com.tukorea.my_crossy_road.framework.interfaces.IGameObject;
@@ -27,10 +28,16 @@ public class MapLoader implements IGameObject {
         {
             Environment.Type randomType = Environment.Type.random(random);
 
-            for(int i = 0; i < 5; ++i)
-            {
-                Environment environment = Environment.get(randomType, 1.0f * 2.0f * i, 1.0f  + environMentY);
+            for(int i = 0; i < 5; ++i) {
+                Environment environment = Environment.get(randomType, 1.0f * 2.0f * i, 1.0f + environMentY);
                 scene.add(MainScene.Layer.environment, environment);
+
+                float randomFloat = random.nextFloat();
+
+                Log.d(TAG, "Random: " + randomFloat);
+
+                if (randomFloat < 0.2f)
+                    scene.add(MainScene.Layer.obstacle, new Obstacle(randomType, 1.0f * 2.0f * i, 1.0f + environMentY));
             }
 
             environMentY -= 2.0f;

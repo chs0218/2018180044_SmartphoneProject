@@ -59,7 +59,6 @@ public class Environment extends Sprite implements IRecyclable {
         setBitmapResource(type.resId());
         width = type.width();
         height = type.height();
-        // Platform 은 x,y 를 사용하지 않고 dstRect 만을 사용하도록 한다.
         dstRect.set(left, top, left + width, top + height);
     }
 
