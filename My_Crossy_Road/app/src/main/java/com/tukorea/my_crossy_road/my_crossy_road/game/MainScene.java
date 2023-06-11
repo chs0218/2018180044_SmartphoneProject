@@ -15,10 +15,11 @@ import java.util.ArrayList;
 
 public class MainScene extends BaseScene {
     public enum Layer {
-        bg, environment, obstacle, player, controller, COUNT
+        bg, environment, obstacle, player, ui, controller, COUNT
     }
 
     private final Player player;
+    private Score score;
     private final MapLoader mapLoader;
 
     public MainScene(){
@@ -32,6 +33,10 @@ public class MainScene extends BaseScene {
 
         player = new Player();
         add(Layer.player, player);
+
+        score = new Score();
+        add(Layer.ui, score);
+        addScore(0);
 
         add(Layer.controller, new CollisionChecker(player));
     }
@@ -68,5 +73,12 @@ public class MainScene extends BaseScene {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         return player.onTouchEvent(event);
+    }
+
+    public void addScore(int amount) {
+        score.add(amount);
+    }
+    public int getScore() {
+        return score.getScore();
     }
 }
