@@ -92,6 +92,9 @@ public class Player extends AnimSprite implements IBoxCollidable {
                     dstRect.offset(0, dy);
                 } else {
                     scene.addScore();
+                    dstRect.offset(0, dy);
+                    dstRect.offset(0, -totalDy);
+                    dstRect.offset(0, -2.0f);
                     state = State.Idle;
                 }
                 break;
@@ -105,6 +108,9 @@ public class Player extends AnimSprite implements IBoxCollidable {
                         x += dx;
                         dstRect.offset(dx, 0);
                     } else {
+                        dstRect.offset(dx, 0);
+                        dstRect.offset(-totalDx, 0);
+                        dstRect.offset(2.0f, 0);
                         state = State.Idle;
                     }
                 }
@@ -119,6 +125,9 @@ public class Player extends AnimSprite implements IBoxCollidable {
                         x += dx;
                         dstRect.offset(dx, 0);
                     } else {
+                        dstRect.offset(dx, 0);
+                        dstRect.offset(-totalDx, 0);
+                        dstRect.offset(-2.0f, 0);
                         state = State.Idle;
                     }
                 }

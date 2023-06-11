@@ -27,8 +27,6 @@ public class Score implements IGameObject {
         this.srcCharWidth = bitmap.getWidth() / 10;
         this.srcCharHeight = bitmap.getHeight();
         this.dstCharHeight = dstCharWidth * srcCharHeight / srcCharWidth;
-
-        this.score = 10;
     }
     public void setScore(int score) {
         this.score = score;
