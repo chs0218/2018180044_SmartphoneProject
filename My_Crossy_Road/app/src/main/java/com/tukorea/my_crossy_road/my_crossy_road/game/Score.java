@@ -19,11 +19,11 @@ public class Score implements IGameObject {
     private RectF dstRect = new RectF();
     private int score, displayScore;
 
-    public Score() {
-        this.bitmap = BitmapPool.get(R.mipmap.number_24x32);
-        this.right = Metrics.game_width - 0.5f;
-        this.top = 0.5f;
-        this.dstCharWidth = 0.6f;
+    public Score(float fRight, float fTop) {
+        this.bitmap = BitmapPool.get(R.mipmap.numbers);
+        this.right = fRight;
+        this.top = fTop;
+        this.dstCharWidth = 1.0f;
         this.srcCharWidth = bitmap.getWidth() / 10;
         this.srcCharHeight = bitmap.getHeight();
         this.dstCharHeight = dstCharWidth * srcCharHeight / srcCharWidth;

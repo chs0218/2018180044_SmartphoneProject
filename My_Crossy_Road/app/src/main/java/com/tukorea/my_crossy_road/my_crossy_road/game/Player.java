@@ -79,6 +79,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
 
     @Override
     public void update() {
+        MainScene scene = (MainScene) BaseScene.getTopScene();
         switch (state) {
             case Move_Forward:
                 float dy = -4.f * BaseScene.frameTime;
@@ -88,9 +89,8 @@ public class Player extends AnimSprite implements IBoxCollidable {
                 if(totalDy > -2.0f) {
                     y += dy;
                     dstRect.offset(0, dy);
-                }
-
-                else {
+                } else {
+                    scene.addScore();
                     state = State.Idle;
                 }
                 break;

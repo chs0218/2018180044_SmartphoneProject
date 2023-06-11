@@ -34,9 +34,8 @@ public class MainScene extends BaseScene {
         player = new Player();
         add(Layer.player, player);
 
-        score = new Score();
+        score = new Score(Metrics.game_width - 0.5f, 1.0f);
         add(Layer.ui, score);
-        addScore(0);
 
         add(Layer.controller, new CollisionChecker(player));
     }
@@ -75,8 +74,8 @@ public class MainScene extends BaseScene {
         return player.onTouchEvent(event);
     }
 
-    public void addScore(int amount) {
-        score.add(amount);
+    public void addScore() {
+        score.add(1);
     }
     public int getScore() {
         return score.getScore();
