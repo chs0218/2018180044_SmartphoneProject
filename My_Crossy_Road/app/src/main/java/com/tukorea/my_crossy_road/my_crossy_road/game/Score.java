@@ -76,4 +76,8 @@ public class Score implements IGameObject {
     public void add(int amount) {
         score += amount;
     }
+    public void reset(){
+        score = 0;
+        displayScore = 0;
+    }
 }

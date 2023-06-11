@@ -182,4 +182,14 @@ public class Player extends AnimSprite implements IBoxCollidable {
     }
 
     public void setbDead(boolean bDead){ m_bDead = bDead; }
+    public void reset(){
+        this.x = 5.0f;
+        this.previousX = 5.0f;
+        this.y = 15.0f;
+        this.previousY = 15.0f;
+        this.frameCount = 1;
+        this.createdOn = System.currentTimeMillis();
+        this.state = State.Idle;
+        fixDstRect();
+    }
 }

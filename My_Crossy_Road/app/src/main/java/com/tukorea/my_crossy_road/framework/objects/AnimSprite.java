@@ -3,6 +3,7 @@ package com.tukorea.my_crossy_road.framework.objects;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
+import com.tukorea.my_crossy_road.R;
 import com.tukorea.my_crossy_road.framework.res.BitmapPool;
 
 public class AnimSprite extends Sprite {

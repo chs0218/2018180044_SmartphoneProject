@@ -51,4 +51,8 @@ public class MapLoader implements IGameObject {
 
     @Override
     public void draw(Canvas canvas) {}
+    public void reset()
+    {
+        environMentY = 17.0f;
+    }
 }

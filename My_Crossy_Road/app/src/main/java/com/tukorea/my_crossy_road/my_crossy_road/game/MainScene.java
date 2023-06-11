@@ -79,7 +79,8 @@ public class MainScene extends BaseScene {
     @Override
     public void update(long elapsedNanos) {
         if (player.m_bDead) {
-            new PausedScene().pushScene();
+            new ResultScene(this).pushScene();
+            player.m_bDead = false;
         } else {
             PullDown();
             super.update(elapsedNanos);
@@ -104,5 +105,13 @@ public class MainScene extends BaseScene {
     }
     public int getScore() {
         return score.getScore();
+    }
+
+    public void restartGame(){;
+        layers.get(Layer.environment.ordinal()).clear();
+        layers.get(Layer.obstacle.ordinal()).clear();
+        mapLoader.reset();
+        score.reset();
+        player.reset();
     }
 }
