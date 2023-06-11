@@ -20,6 +20,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private static final String TAG = Player.class.getSimpleName();
     private float touchDownX;
     private float previousX, previousY;
+    private RectF collisionRect = new RectF();
     private float totalDx, totalDy;
     private float fSpeed;
     public boolean m_bDead = false;
@@ -29,6 +30,16 @@ public class Player extends AnimSprite implements IBoxCollidable {
         fSpeed = 6.0f;
     }
 
+    protected static float[] edgeInsets = { 0.1f, 0.05f, 0.1f, 0.1f };
+
+    private void fixCollisionRect() {
+        float[] insets = edgeInsets;
+        collisionRect.set(
+                dstRect.left + insets[0],
+                dstRect.top + insets[1],
+                dstRect.right - insets[2],
+                dstRect.bottom -  insets[3]);
+    }
     protected static Rect[][] srcRects = {
             new Rect[] {
                     new Rect(0 * 900, 0 * 900, 1 * 900, 1 * 900)
@@ -65,7 +76,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
 
     @Override
     public RectF getCollisionRect() {
-        return dstRect;
+        return collisionRect;
     }
 
     protected enum State {
@@ -136,8 +147,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
                 }
                 break;
         }
-
-
+        fixCollisionRect();
     }
 
 

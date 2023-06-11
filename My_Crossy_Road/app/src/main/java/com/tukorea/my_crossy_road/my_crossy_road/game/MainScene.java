@@ -119,6 +119,9 @@ public class MainScene extends BaseScene {
         mapLoader.reset();
         score.reset();
         player.reset();
+
+        Sound.stopMusic();
+        Sound.playMusic(R.raw.background_music);
     }
 
     @Override
