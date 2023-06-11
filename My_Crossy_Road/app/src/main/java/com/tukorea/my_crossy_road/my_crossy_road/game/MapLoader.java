@@ -28,15 +28,12 @@ public class MapLoader implements IGameObject {
         {
             Environment.Type randomType = Environment.Type.random(random);
 
+            int randomInt = random.nextInt(5);
             for(int i = 0; i < 5; ++i) {
                 Environment environment = Environment.get(randomType, 1.0f * 2.0f * i, 1.0f + environMentY);
                 scene.add(MainScene.Layer.environment, environment);
 
-                float randomFloat = random.nextFloat();
-
-                Log.d(TAG, "Random: " + randomFloat);
-
-                if (randomFloat < 0.2f)
+                if(i == randomInt)
                     scene.add(MainScene.Layer.obstacle, new Obstacle(randomType, 1.0f * 2.0f * i, 1.0f + environMentY));
             }
 
