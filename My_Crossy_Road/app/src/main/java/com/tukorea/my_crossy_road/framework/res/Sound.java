@@ -3,6 +3,7 @@ package com.tukorea.my_crossy_road.framework.res;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.util.Log;
 
 import com.tukorea.my_crossy_road.framework.view.GameView;
 
@@ -60,6 +61,7 @@ public class Sound {
                 .setAudioAttributes(attrs)
                 .setMaxStreams(3)
                 .build();
+
         return soundPool;
     }
 }

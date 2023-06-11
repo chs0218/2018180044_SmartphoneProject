@@ -21,6 +21,9 @@ public class ResultScene extends BaseScene {
         int mainSceneScore = m_MainScene.getScore();
         int digit = 0;
 
+        if(mainSceneScore == 0)
+            digit = 1;
+
         while(mainSceneScore > 0){
             digit += 1;
             mainSceneScore /= 10;

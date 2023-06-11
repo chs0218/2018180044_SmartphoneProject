@@ -53,6 +53,10 @@ public class MainScene extends BaseScene {
         }));
 
         add(Layer.controller, new CollisionChecker(player));
+
+        Sound.playEffect(R.raw.button_sound);
+        Sound.playEffect(R.raw.die_sound);
+        Sound.playEffect(R.raw.move_sound);
     }
 
     public void PullDown()
