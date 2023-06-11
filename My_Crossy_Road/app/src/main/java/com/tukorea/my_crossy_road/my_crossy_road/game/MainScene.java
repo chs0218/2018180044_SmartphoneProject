@@ -32,6 +32,8 @@ public class MainScene extends BaseScene {
 
         player = new Player();
         add(Layer.player, player);
+
+        add(Layer.controller, new CollisionChecker(player));
     }
 
     public void PullDown()

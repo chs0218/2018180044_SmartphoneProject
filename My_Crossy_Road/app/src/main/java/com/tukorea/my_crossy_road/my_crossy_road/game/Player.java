@@ -2,17 +2,19 @@ package com.tukorea.my_crossy_road.my_crossy_road.game;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.util.Log;
 import android.view.MotionEvent;
 
 import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.tukorea.my_crossy_road.R;
+import com.tukorea.my_crossy_road.framework.interfaces.IBoxCollidable;
 import com.tukorea.my_crossy_road.framework.objects.AnimSprite;
 import com.tukorea.my_crossy_road.framework.scene.BaseScene;
 import com.tukorea.my_crossy_road.framework.view.Metrics;
 
-public class Player extends AnimSprite {
+public class Player extends AnimSprite implements IBoxCollidable {
 
     private static final String TAG = Player.class.getSimpleName();
     private float touchDownX;
@@ -56,6 +58,12 @@ public class Player extends AnimSprite {
                     new Rect(3 * 900, 3 * 900, 4 * 900, 4 * 900)
             }
     };
+
+    @Override
+    public RectF getCollisionRect() {
+        return dstRect;
+    }
+
     protected enum State {
         Idle, Move_Forward, Move_Right, Move_Left, Move_Backward
     }

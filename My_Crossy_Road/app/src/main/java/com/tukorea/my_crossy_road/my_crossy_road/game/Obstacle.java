@@ -1,18 +1,23 @@
 package com.tukorea.my_crossy_road.my_crossy_road.game;
 
+import android.graphics.RectF;
 import android.util.Log;
 
 import com.tukorea.my_crossy_road.R;
+import com.tukorea.my_crossy_road.framework.interfaces.IBoxCollidable;
+import com.tukorea.my_crossy_road.framework.interfaces.IRecyclable;
 import com.tukorea.my_crossy_road.framework.objects.Sprite;
 import com.tukorea.my_crossy_road.framework.scene.BaseScene;
+import com.tukorea.my_crossy_road.framework.scene.RecycleBin;
 
 import java.util.Random;
 
-public class Obstacle extends Sprite {
+public class Obstacle extends Sprite implements IRecyclable, IBoxCollidable {
     private static final String TAG = Environment.class.getSimpleName();
     private Obstacle.Type type;
     private float fMoveSpeedX = 0.0f;
     private boolean bMoveDirection = false;
+
     public enum Type {
         EmbulanceL, EmbulanceR, Tree, Rock, COUNT;
         int resId() {
@@ -36,7 +41,19 @@ public class Obstacle extends Sprite {
         static float[] widths = {2.0f, 2.0f, 1.5f, 1.5f};
         static float[] heights = {1.0f, 1.0f, 1.5f, 1.5f};
     }
-    Obstacle(Environment.Type environmentType, float cx, float cy){
+
+    public static Obstacle get(Environment.Type environmentType, float cx, float cy)
+    {
+        Obstacle obstacle = (Obstacle) RecycleBin.get(Obstacle.class);
+        if(obstacle == null){
+            obstacle = new Obstacle();
+            Log.d(TAG, "Obstacle Created");
+        }
+        obstacle.init(environmentType, cx, cy);
+        return obstacle;
+    }
+
+    private void init(Environment.Type environmentType, float cx, float cy) {
         if(environmentType == Environment.Type.Road)
         {
             Random random = new Random();
@@ -65,7 +82,6 @@ public class Obstacle extends Sprite {
             Random random = new Random();
 
             int randInt = random.nextInt(2);
-            //Log.d(TAG, "Random: " + randInt);
 
             if(randInt == 0)
             {
@@ -125,5 +141,12 @@ public class Obstacle extends Sprite {
 
     protected MainScene.Layer getLayer() {
         return MainScene.Layer.obstacle;
+    }
+    @Override
+    public RectF getCollisionRect() {
+        return dstRect;
+    }
+    @Override
+    public void onRecycle() {
     }
 }

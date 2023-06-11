@@ -1,8 +1,10 @@
 package com.tukorea.my_crossy_road.my_crossy_road.game;
 
+import android.graphics.RectF;
 import android.util.Log;
 
 import com.tukorea.my_crossy_road.R;
+import com.tukorea.my_crossy_road.framework.interfaces.IBoxCollidable;
 import com.tukorea.my_crossy_road.framework.interfaces.IRecyclable;
 import com.tukorea.my_crossy_road.framework.objects.Sprite;
 import com.tukorea.my_crossy_road.framework.scene.BaseScene;
@@ -10,7 +12,7 @@ import com.tukorea.my_crossy_road.framework.scene.RecycleBin;
 
 import java.util.Random;
 
-public class Environment extends Sprite implements IRecyclable {
+public class Environment extends Sprite implements IRecyclable{
     private static final String TAG = Environment.class.getSimpleName();
 
     private Type type;
