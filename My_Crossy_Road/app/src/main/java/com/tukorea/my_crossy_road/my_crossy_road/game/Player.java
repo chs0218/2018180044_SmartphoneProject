@@ -159,15 +159,19 @@ public class Player extends AnimSprite implements IBoxCollidable {
             else if (state == State.Idle) {
                 if(touchUpX - touchDownX < 0.f)
                 {
-                    state = State.Move_Left;
-                    previousX = x;
-                    totalDx = 0;
+                    if(x > 1.5f) {
+                        state = State.Move_Left;
+                        previousX = x;
+                        totalDx = 0;
+                    }
                 }
                 else
                 {
-                    state = State.Move_Right;
-                    previousX = x;
-                    totalDx = 0;
+                    if(x < 7.5f) {
+                        state = State.Move_Right;
+                        previousX = x;
+                        totalDx = 0;
+                    }
                 }
             }
             return true;
