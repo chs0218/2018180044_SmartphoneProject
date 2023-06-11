@@ -33,7 +33,7 @@ public class MapLoader implements IGameObject {
                 Environment environment = Environment.get(randomType, 1.0f * 2.0f * i, 1.0f + environMentY);
                 scene.add(MainScene.Layer.environment, environment);
 
-                if(i == randomInt)
+                if(i == randomInt && 13.0f > environMentY)
                     scene.add(MainScene.Layer.obstacle, new Obstacle(randomType, 1.0f * 2.0f * i, 1.0f + environMentY));
             }
 

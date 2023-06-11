@@ -44,7 +44,7 @@ public class Obstacle extends Sprite {
             if(random.nextBoolean()) {
                 type = Type.EmbulanceR;
                 setBitmapResource(R.mipmap.embulance_r);
-                fMoveSpeedX = random.nextFloat();
+                fMoveSpeedX = random.nextFloat() + 0.3f;
                 this.width = Type.EmbulanceL.width();
                 this.height = Type.EmbulanceL.height();
                 this.x = cx + 1.0f;
@@ -53,7 +53,7 @@ public class Obstacle extends Sprite {
             else {
                 type = Type.EmbulanceL;
                 setBitmapResource(R.mipmap.embulance_l);
-                fMoveSpeedX = -random.nextFloat();
+                fMoveSpeedX = -(random.nextFloat() + 0.3f);
                 this.width = Type.EmbulanceL.width();
                 this.height = Type.EmbulanceL.height();
                 this.x = cx + 1.0f;
