@@ -3,7 +3,9 @@ package com.tukorea.my_crossy_road.my_crossy_road.game;
 import android.graphics.Canvas;
 import android.util.Log;
 
+import com.tukorea.my_crossy_road.R;
 import com.tukorea.my_crossy_road.framework.interfaces.IGameObject;
+import com.tukorea.my_crossy_road.framework.res.Sound;
 import com.tukorea.my_crossy_road.framework.scene.BaseScene;
 import com.tukorea.my_crossy_road.framework.util.CollisionHelper;
 
@@ -24,6 +26,7 @@ public class CollisionChecker implements IGameObject {
             Obstacle obstacle = (Obstacle) obstacles.get(i);
             if(CollisionHelper.collides(player, obstacle)){
                 player.setbDead(true);
+                Sound.playEffect(R.raw.die_sound);
                 break;
             }
         }

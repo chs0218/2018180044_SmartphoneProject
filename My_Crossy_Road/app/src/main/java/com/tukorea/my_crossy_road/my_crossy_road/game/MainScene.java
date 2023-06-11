@@ -10,6 +10,7 @@ import com.tukorea.my_crossy_road.framework.interfaces.IBoxCollidable;
 import com.tukorea.my_crossy_road.framework.interfaces.IGameObject;
 import com.tukorea.my_crossy_road.framework.interfaces.ITouchable;
 import com.tukorea.my_crossy_road.framework.objects.Button;
+import com.tukorea.my_crossy_road.framework.res.Sound;
 import com.tukorea.my_crossy_road.framework.scene.BaseScene;
 import com.tukorea.my_crossy_road.framework.objects.Sprite;
 import com.tukorea.my_crossy_road.framework.view.Metrics;
@@ -44,6 +45,7 @@ public class MainScene extends BaseScene {
             @Override
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.pressed) {
+                    Sound.playEffect(R.raw.button_sound);
                     new PausedScene().pushScene();
                 }
                 return true;
@@ -113,5 +115,25 @@ public class MainScene extends BaseScene {
         mapLoader.reset();
         score.reset();
         player.reset();
+    }
+
+    @Override
+    protected void onStart() {
+        Sound.playMusic(R.raw.background_music);
+    }
+
+    @Override
+    protected void onEnd() {
+        Sound.stopMusic();
+    }
+
+    @Override
+    protected void onPause() {
+        Sound.pauseMusic();
+    }
+
+    @Override
+    protected void onResume() {
+        Sound.resumeMusic();
     }
 }

@@ -3,6 +3,7 @@ package com.tukorea.my_crossy_road.my_crossy_road.game;
 import com.tukorea.my_crossy_road.R;
 import com.tukorea.my_crossy_road.framework.objects.Button;
 import com.tukorea.my_crossy_road.framework.objects.Sprite;
+import com.tukorea.my_crossy_road.framework.res.Sound;
 import com.tukorea.my_crossy_road.framework.scene.BaseScene;
 
 public class PausedScene extends BaseScene {
@@ -17,6 +18,7 @@ public class PausedScene extends BaseScene {
             @Override
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.released) {
+                    Sound.playEffect(R.raw.button_sound);
                     popScene();
                     return true;
                 }
@@ -27,6 +29,7 @@ public class PausedScene extends BaseScene {
             @Override
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.released) {
+                    Sound.playEffect(R.raw.button_sound);
                     finishActivity();
                     return true;
                 }

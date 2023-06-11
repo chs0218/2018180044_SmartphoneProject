@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import com.tukorea.my_crossy_road.R;
 import com.tukorea.my_crossy_road.framework.interfaces.IBoxCollidable;
 import com.tukorea.my_crossy_road.framework.objects.AnimSprite;
+import com.tukorea.my_crossy_road.framework.res.Sound;
 import com.tukorea.my_crossy_road.framework.scene.BaseScene;
 import com.tukorea.my_crossy_road.framework.view.Metrics;
 
@@ -167,6 +168,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
                 state = State.Move_Forward;
                 previousY = y;
                 totalDy = 0;
+                Sound.playEffect(R.raw.move_sound);
             }
             else if (state == State.Idle) {
                 if(touchUpX - touchDownX < 0.f)
@@ -185,6 +187,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
                         totalDx = 0;
                     }
                 }
+                Sound.playEffect(R.raw.move_sound);
             }
             return true;
         }
