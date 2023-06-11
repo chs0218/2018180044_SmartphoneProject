@@ -12,8 +12,9 @@ public class Obstacle extends Sprite {
     private static final String TAG = Environment.class.getSimpleName();
     private Obstacle.Type type;
     private float fMoveSpeedX = 0.0f;
+    private boolean bMoveDirection = false;
     public enum Type {
-        Embulance, Tree, Rock, COUNT;
+        EmbulanceL, EmbulanceR, Tree, Rock, COUNT;
         int resId() {
             return resIds[this.ordinal()];
         }
@@ -27,26 +28,37 @@ public class Obstacle extends Sprite {
         }
 
         static int[] resIds = {
-                R.mipmap.embulance,
+                R.mipmap.embulance_l,
+                R.mipmap.embulance_r,
                 R.mipmap.tree,
                 R.mipmap.grass,
         };
-        static float[] widths = {2.0f, 1.5f, 1.5f};
-        static float[] heights = {1.0f, 1.5f, 1.5f};
+        static float[] widths = {2.0f, 2.0f, 1.5f, 1.5f};
+        static float[] heights = {1.0f, 1.0f, 1.5f, 1.5f};
     }
     Obstacle(Environment.Type environmentType, float cx, float cy){
         if(environmentType == Environment.Type.Road)
         {
             Random random = new Random();
 
-            type = Type.Embulance;
-            fMoveSpeedX = random.nextFloat();
-
-            this.x = cx + 1.0f;
-            this.y = cy + 1.0f;
-            this.width = Type.Embulance.width();
-            this.height = Type.Embulance.height();
-            setBitmapResource(R.mipmap.embulance);
+            if(random.nextBoolean()) {
+                type = Type.EmbulanceR;
+                setBitmapResource(R.mipmap.embulance_r);
+                fMoveSpeedX = random.nextFloat();
+                this.width = Type.EmbulanceL.width();
+                this.height = Type.EmbulanceL.height();
+                this.x = cx + 1.0f;
+                this.y = cy + 1.0f;
+            }
+            else {
+                type = Type.EmbulanceL;
+                setBitmapResource(R.mipmap.embulance_l);
+                fMoveSpeedX = -random.nextFloat();
+                this.width = Type.EmbulanceL.width();
+                this.height = Type.EmbulanceL.height();
+                this.x = cx + 1.0f;
+                this.y = cy + 1.0f;
+            }
         }
         else if(environmentType == Environment.Type.Grass)
         {
@@ -82,17 +94,18 @@ public class Obstacle extends Sprite {
     @Override
     public void update() {
         switch(type){
-            case Rock:
-                break;
-            case Tree:
-                break;
-            case Embulance:
+            case EmbulanceL:
+            case EmbulanceR:
             {
                 float dx = fMoveSpeedX * BaseScene.frameTime;
 
-                x -= dx;
-                dstRect.offset(-dx, 0);
+                x += dx;
+                dstRect.offset(dx, 0);
             }
+                break;
+            case Tree:
+                break;
+            case Rock:
                 break;
         }
 
