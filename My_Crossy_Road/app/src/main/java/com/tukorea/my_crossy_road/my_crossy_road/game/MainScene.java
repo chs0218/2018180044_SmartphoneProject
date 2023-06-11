@@ -44,7 +44,6 @@ public class MainScene extends BaseScene {
             @Override
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.pressed) {
-                    Log.d("MainScene", "PAUSE");
                     new PausedScene().pushScene();
                 }
                 return true;
@@ -79,10 +78,13 @@ public class MainScene extends BaseScene {
 
     @Override
     public void update(long elapsedNanos) {
-        PullDown();
-        super.update(elapsedNanos);
+        if (player.m_bDead) {
+            new PausedScene().pushScene();
+        } else {
+            PullDown();
+            super.update(elapsedNanos);
+        }
     }
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         ArrayList<IGameObject> gameObjects = layers.get(Layer.touch.ordinal());

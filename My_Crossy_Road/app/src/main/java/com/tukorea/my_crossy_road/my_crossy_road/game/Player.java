@@ -20,6 +20,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private float touchDownX;
     private float previousX, previousY;
     private float totalDx, totalDy;
+    public boolean m_bDead = false;
 
     public Player() {
         super(R.mipmap.character_animation_sheet, 5.0f, 15.0f, 1.0f, 1.0f, 8, 1);
@@ -179,4 +180,6 @@ public class Player extends AnimSprite implements IBoxCollidable {
 
         return false;
     }
+
+    public void setbDead(boolean bDead){ m_bDead = bDead; }
 }

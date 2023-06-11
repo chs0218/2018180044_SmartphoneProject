@@ -8,11 +8,12 @@ import com.tukorea.my_crossy_road.framework.scene.BaseScene;
 public class PausedScene extends BaseScene {
 
     public enum Layer {
-       touch, COUNT
+        bg, touch, COUNT
     }
     public PausedScene() {
         initLayers(Layer.COUNT);
-        add(Layer.touch, new Button(R.mipmap.btn_resume_n, 8f, 3.5f, 2.667f, 1f, new Button.Callback() {
+        add(Layer.bg, new Sprite(R.mipmap.background, 5.0f, 8.0f, 9.0f, 16.0f));
+        add(Layer.touch, new Button(R.mipmap.btn_resume_n, 5.0f, 8.0f, 5.2f, 2.0f, new Button.Callback() {
             @Override
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.released) {
@@ -22,7 +23,7 @@ public class PausedScene extends BaseScene {
                 return false;
             }
         }));
-        add(Layer.touch, new Button(R.mipmap.btn_exit_n, 8f, 5.5f, 2.667f, 1f, new Button.Callback() {
+        add(Layer.touch, new Button(R.mipmap.btn_exit_n, 5.0f, 5.5f, 5.2f, 2.0f, new Button.Callback() {
             @Override
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.released) {

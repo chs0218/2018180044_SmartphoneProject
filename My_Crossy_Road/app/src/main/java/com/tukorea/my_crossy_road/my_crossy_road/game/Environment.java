@@ -67,7 +67,6 @@ public class Environment extends Sprite implements IRecyclable{
     @Override
     public void update() {
         if (dstRect.top > 18.0f) {
-//            Log.d(TAG, "Removing:" + this);
             BaseScene.getTopScene().remove(getLayer(), this);
         }
     }

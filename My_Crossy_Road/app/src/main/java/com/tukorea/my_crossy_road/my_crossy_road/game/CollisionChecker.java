@@ -19,10 +19,12 @@ public class CollisionChecker implements IGameObject {
     public void update() {
         MainScene scene = (MainScene) BaseScene.getTopScene();
         ArrayList<IGameObject> obstacles = scene.getObjectsAt(MainScene.Layer.obstacle);
+
         for(int i = obstacles.size() - 1; i >= 0; i--){
             Obstacle obstacle = (Obstacle) obstacles.get(i);
             if(CollisionHelper.collides(player, obstacle)){
-                Log.d(TAG, "Collide");
+                player.setbDead(true);
+                break;
             }
         }
     }
