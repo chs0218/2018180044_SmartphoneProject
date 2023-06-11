@@ -61,7 +61,7 @@ public class Obstacle extends Sprite implements IRecyclable, IBoxCollidable {
             if(random.nextBoolean()) {
                 type = Type.EmbulanceR;
                 setBitmapResource(R.mipmap.embulance_r);
-                fMoveSpeedX = random.nextFloat() + 0.3f;
+                fMoveSpeedX = random.nextFloat() + 1.0f;
                 this.width = Type.EmbulanceL.width();
                 this.height = Type.EmbulanceL.height();
                 this.x = cx + 1.0f;
@@ -70,7 +70,7 @@ public class Obstacle extends Sprite implements IRecyclable, IBoxCollidable {
             else {
                 type = Type.EmbulanceL;
                 setBitmapResource(R.mipmap.embulance_l);
-                fMoveSpeedX = -(random.nextFloat() + 0.3f);
+                fMoveSpeedX = -(random.nextFloat() + 1.0f);
                 this.width = Type.EmbulanceL.width();
                 this.height = Type.EmbulanceL.height();
                 this.x = cx + 1.0f;

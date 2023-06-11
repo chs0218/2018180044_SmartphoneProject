@@ -20,10 +20,12 @@ public class Player extends AnimSprite implements IBoxCollidable {
     private float touchDownX;
     private float previousX, previousY;
     private float totalDx, totalDy;
+    private float fSpeed;
     public boolean m_bDead = false;
 
     public Player() {
         super(R.mipmap.character_animation_sheet, 5.0f, 15.0f, 1.0f, 1.0f, 8, 1);
+        fSpeed = 6.0f;
     }
 
     protected static Rect[][] srcRects = {
@@ -83,7 +85,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
         MainScene scene = (MainScene) BaseScene.getTopScene();
         switch (state) {
             case Move_Forward:
-                float dy = -4.f * BaseScene.frameTime;
+                float dy = -fSpeed * BaseScene.frameTime;
 
                 totalDy += dy;
 
@@ -100,7 +102,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
                 break;
             case Move_Right:
                 {
-                    float dx = 4.f * BaseScene.frameTime;
+                    float dx = fSpeed * BaseScene.frameTime;
 
                     totalDx += dx;
 
@@ -117,7 +119,7 @@ public class Player extends AnimSprite implements IBoxCollidable {
                 break;
             case Move_Left:
                 {
-                    float dx = -4.f * BaseScene.frameTime;
+                    float dx = -fSpeed * BaseScene.frameTime;
 
                     totalDx += dx;
 

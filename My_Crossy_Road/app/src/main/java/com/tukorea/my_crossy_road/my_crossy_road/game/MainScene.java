@@ -55,7 +55,7 @@ public class MainScene extends BaseScene {
 
     public void PullDown()
     {
-        float speed = (16.0f - player.GetY()) / 16.0f * 4.0f;
+        float speed = (16.0f - player.GetY()) / 16.0f * 6.0f;
         player.PullDownCharacter(speed);
         PullDownEnvironments(speed);
     }
