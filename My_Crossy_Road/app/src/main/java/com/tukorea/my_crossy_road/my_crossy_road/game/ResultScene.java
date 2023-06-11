@@ -9,14 +9,32 @@ public class ResultScene extends BaseScene {
     private final MainScene m_MainScene;
 
     public enum Layer {
-        bg, touch, COUNT
+        bg, result, touch, COUNT
     }
     public ResultScene(MainScene scene) {
         m_MainScene = scene;
 
-        initLayers(PausedScene.Layer.COUNT);
-        add(PausedScene.Layer.bg, new Sprite(R.mipmap.background, 5.0f, 8.0f, 9.0f, 16.0f));
-        add(PausedScene.Layer.touch, new Button(R.mipmap.btn_restart_n, 5.0f, 8.0f, 5.2f, 2.0f, new Button.Callback() {
+        initLayers(ResultScene.Layer.COUNT);
+        add(ResultScene.Layer.bg, new Sprite(R.mipmap.background, 5.0f, 8.0f, 9.0f, 16.0f));
+
+        int mainSceneScore = m_MainScene.getScore();
+        int digit = 0;
+
+        while(mainSceneScore > 0){
+            digit += 1;
+            mainSceneScore /= 10;
+        }
+
+        float fScoreCorrection = 2.25f + digit * 0.95f;
+        float resultTextX = 4.2f - digit * 0.25f;
+
+        add(ResultScene.Layer.result, new Sprite(R.mipmap.resulttext, resultTextX, 3.5f, 5.0f, 1.0f));
+
+        Score score = new Score(resultTextX + fScoreCorrection, 2.75f);
+        score.setScore(m_MainScene.getScore());
+        add(ResultScene.Layer.result, score);
+
+        add(ResultScene.Layer.touch, new Button(R.mipmap.btn_restart_n, 5.0f, 8.0f, 5.2f, 2.0f, new Button.Callback() {
             @Override
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.released) {
@@ -27,7 +45,7 @@ public class ResultScene extends BaseScene {
                 return false;
             }
         }));
-        add(PausedScene.Layer.touch, new Button(R.mipmap.btn_exit_n, 5.0f, 5.5f, 5.2f, 2.0f, new Button.Callback() {
+        add(ResultScene.Layer.touch, new Button(R.mipmap.btn_exit_n, 5.0f, 5.5f, 5.2f, 2.0f, new Button.Callback() {
             @Override
             public boolean onTouch(Button.Action action) {
                 if (action == Button.Action.released) {
@@ -51,6 +69,6 @@ public class ResultScene extends BaseScene {
 
     @Override
     protected int getTouchLayerIndex() {
-        return PausedScene.Layer.touch.ordinal();
+        return ResultScene.Layer.touch.ordinal();
     }
 }
