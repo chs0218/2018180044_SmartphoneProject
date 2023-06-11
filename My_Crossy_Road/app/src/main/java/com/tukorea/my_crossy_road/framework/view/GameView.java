@@ -1,6 +1,8 @@
 package com.tukorea.my_crossy_road.framework.view;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -15,29 +17,40 @@ import com.tukorea.my_crossy_road.framework.scene.BaseScene;
 
 public class GameView extends View implements Choreographer.FrameCallback {
     private static final String TAG = GameView.class.getSimpleName();
-
     public static Resources res;
+    public static GameView view;
+    //    private Ball ball1, ball2;
     protected Paint fpsPaint;
     protected Paint borderPaint;
-    private long previousNanos;
+
+    protected boolean running;
 
     public GameView(Context context) {
         super(context);
         init(null, 0);
     }
-
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs, 0);
     }
-
     public GameView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(attrs, defStyle);
     }
 
+    public static void clear() {
+        view = null;
+        res = null;
+    }
+
+    public void setFullScreen() {
+        setSystemUiVisibility(View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+    }
     private void init(AttributeSet attrs, int defStyle) {
+        GameView.view = this;
         GameView.res = getResources();
+
+        running = true;
         Choreographer.getInstance().postFrameCallback(this);
 
         if (BuildConfig.DEBUG) {
@@ -54,17 +67,12 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
     @Override
     public void doFrame(long nanos) {
-        if(previousNanos != 0){
-            long elapsedNanos = nanos - previousNanos;
-            BaseScene.getTopScene().update(elapsedNanos);
-            BaseScene scene = BaseScene.getTopScene();
-            if (scene != null) {
-                scene.update(elapsedNanos);
-            }
+        BaseScene scene = BaseScene.getTopScene();
+        if (scene != null) {
+            scene.update(nanos);
         }
-        previousNanos = nanos;
         invalidate();
-        if (isShown()) {
+        if (running) {
             Choreographer.getInstance().postFrameCallback(this);
         }
     }
@@ -72,6 +80,7 @@ public class GameView extends View implements Choreographer.FrameCallback {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+
         float view_ratio = (float)w / (float)h;
         float game_ratio = Metrics.game_width / Metrics.game_height;
         if (view_ratio > game_ratio) {
@@ -104,16 +113,54 @@ public class GameView extends View implements Choreographer.FrameCallback {
 
 //        if (BuildConfig.DEBUG && BaseScene.frameTime > 0) {
 //            int fps = (int) (1.0f / BaseScene.frameTime);
-//            canvas.drawText(BaseScene.getTopScene().SceneName + " FPS: " + fps, 100f, 200f, fpsPaint);
+//            int count = (scene != null) ? scene.count() : 0;
+//           canvas.drawText("FPS: " + fps + " objs: " + count, 100f, 200f, fpsPaint);
 //        }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        boolean handled = BaseScene.getTopScene().onTouchEvent(event);
+        BaseScene topScene = BaseScene.getTopScene();
+        if (topScene == null) return false;
+
+        boolean handled = topScene.onTouchEvent(event);
         if (handled) {
             return true;
         }
         return super.onTouchEvent(event);
+    }
+
+    public void pauseGame() {
+        running = false;
+        BaseScene topScene = BaseScene.getTopScene();
+        if (topScene == null) return;
+        topScene.pauseScene();
+    }
+
+    public void resumeGame() {
+        if (running) {
+            return;
+        }
+        running = true;
+
+        BaseScene.getTopScene().resumeScene();
+        Choreographer.getInstance().postFrameCallback(this);
+    }
+
+    public Activity getActivity() {
+        Context context = getContext();
+        while (context instanceof ContextWrapper) {
+            if (context instanceof Activity) {
+                return (Activity)context;
+            }
+            context = ((ContextWrapper)context).getBaseContext();
+        }
+        return null;
+    }
+
+    public boolean handleBackKey() {
+        BaseScene topScene = BaseScene.getTopScene();
+        if (topScene == null) return false;
+        return topScene.handleBackKey();
     }
 }

@@ -2,11 +2,14 @@
 package com.tukorea.my_crossy_road.my_crossy_road.game;
 
 import android.graphics.RectF;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import com.tukorea.my_crossy_road.R;
 import com.tukorea.my_crossy_road.framework.interfaces.IBoxCollidable;
 import com.tukorea.my_crossy_road.framework.interfaces.IGameObject;
+import com.tukorea.my_crossy_road.framework.interfaces.ITouchable;
+import com.tukorea.my_crossy_road.framework.objects.Button;
 import com.tukorea.my_crossy_road.framework.scene.BaseScene;
 import com.tukorea.my_crossy_road.framework.objects.Sprite;
 import com.tukorea.my_crossy_road.framework.view.Metrics;
@@ -15,7 +18,7 @@ import java.util.ArrayList;
 
 public class MainScene extends BaseScene {
     public enum Layer {
-        bg, environment, obstacle, player, ui, controller, COUNT
+        bg, environment, obstacle, player, ui, touch, controller, COUNT
     }
 
     private final Player player;
@@ -36,6 +39,17 @@ public class MainScene extends BaseScene {
 
         score = new Score(Metrics.game_width - 0.5f, 1.0f);
         add(Layer.ui, score);
+
+        add(Layer.touch, new Button(R.mipmap.btn_pause, 9.0f, 0.0f, 1.0f, 1.0f, new Button.Callback() {
+            @Override
+            public boolean onTouch(Button.Action action) {
+                if (action == Button.Action.pressed) {
+                    Log.d("MainScene", "PAUSE");
+                    new PausedScene().pushScene();
+                }
+                return true;
+            }
+        }));
 
         add(Layer.controller, new CollisionChecker(player));
     }
@@ -71,6 +85,15 @@ public class MainScene extends BaseScene {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        ArrayList<IGameObject> gameObjects = layers.get(Layer.touch.ordinal());
+        for (IGameObject gobj : gameObjects) {
+            if (!(gobj instanceof ITouchable)) {
+                continue;
+            }
+            boolean processed = ((ITouchable) gobj).onTouchEvent(event);
+            if (processed) return true;
+        }
+
         return player.onTouchEvent(event);
     }
 
